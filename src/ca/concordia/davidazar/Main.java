@@ -15,10 +15,9 @@ public class Main {
 	private static int showMenu(){
 		
 		
-		System.out.println("Welcome to Hungry Birds!");		
-		
-		
-		
+		System.out.println("Welcome to Hungry Birds!");
+
+
 		return GameManager.VERSUS_HUMAN;
 	}
 }

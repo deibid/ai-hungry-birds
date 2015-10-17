@@ -11,14 +11,8 @@ package ca.concordia.davidazar;
  * @author David Azar
  *
  */
+
 public class Yard {
-
-
-
-
-
-
-
 
 	/*
 	 * 
@@ -31,10 +25,11 @@ public class Yard {
 	 * se actualizan los valores de birds y larva
 	 * se normalizan las [0-7][0-7] para UI
 	 * se refresca UI
-	 * 
-	 * 
-	 * 
+	 *
 	 */
+
+
+
 	private static final char EMPTY_SPACE = ' ';
 	private static final char LARVA = 'L';
 	private static final char BIRD = 'B';
@@ -59,7 +54,7 @@ public class Yard {
 
 	private Yard(){
 //		generateActualPositions();
-//		generateReducedPositions();
+		generateReducedPositions();
 //		GenerateUIGrid();
 		//		refreshUIGrid();
 		
@@ -72,6 +67,8 @@ public class Yard {
 		
 		int[] coordinates = {0,5};
 		normalizeCoordinatesForUIGrid(coordinates);
+
+        refreshUI();
 //		int[] c = {1,0};
 //		normalizeCoordinatesForUIGrid(c);
 	}
@@ -107,36 +104,83 @@ public class Yard {
 		mLarva = "D2";
 
 		mBirds = new String[4];
-		mBirds[0] = "H1";
-		mBirds[1] = "H3";
-		mBirds[2] = "H5";
-		mBirds[3] = "H7";
+		mBirds[0] = "A1";
+		mBirds[1] = "C1";
+		mBirds[2] = "E1";
+		mBirds[3] = "G1";
 
 
 	}
 
+//
+//	private void refreshUIGrid(){
+//
+//
+//		int[] numericCoordinates = getNumericCoordinates(mLarva);
+//		numericCoordinates = normalizeCoordinatesForUIGrid(numericCoordinates);
+//
+//		mUIGrid[numericCoordinates[0]][numericCoordinates[1]] = LARVA;
+//
+//		for(int i = 0; i < mBirds.length; i++){
+//
+//			numericCoordinates = getNumericCoordinates(mBirds[i]);
+//			numericCoordinates = normalizeCoordinatesForUIGrid(numericCoordinates);
+//			mUIGrid[numericCoordinates[0]][numericCoordinates[1]] = BIRD;
+//		}
+//
+//
+//
+//		printUIGrid();
+//
+//
+//	}
+//
 
-	private void refreshUIGrid(){
 
 
-		int[] numericCoordinates = getNumericCoordinates(mLarva);
-		numericCoordinates = normalizeCoordinatesForUIGrid(numericCoordinates);
-
-		mUIGrid[numericCoordinates[0]][numericCoordinates[1]] = LARVA;
-
-		for(int i = 0; i < mBirds.length; i++){
-
-			numericCoordinates = getNumericCoordinates(mBirds[i]);
-			numericCoordinates = normalizeCoordinatesForUIGrid(numericCoordinates);
-			mUIGrid[numericCoordinates[0]][numericCoordinates[1]] = BIRD;
-		}
+    private void refreshUI(){
 
 
 
-		printUIGrid();
 
 
-	}
+
+
+        System.out.println("-----------------------------");
+
+
+        System.out.println(getNumericCoordinates(mLarva));
+        System.out.println(normalizeCoordinatesForUIGrid(getNumericCoordinates(mLarva)));
+
+
+        System.out.println("-----------------------------");
+
+
+        int[] normalizedLarva = normalizeCoordinatesForUIGrid(getNumericCoordinates(mLarva));
+//
+//
+        mUIGrid[normalizedLarva[0]][normalizedLarva[1]] = LARVA;
+        
+        int[] normalizedBird;
+
+        for( int i = 0;i<mBirds.length; i ++){
+
+            normalizedBird = normalizeCoordinatesForUIGrid(getNumericCoordinates(mBirds[i]));
+            mUIGrid[normalizedBird[0]][normalizedBird[1]] = BIRD;
+
+        }
+
+
+        printUIGrid();
+
+
+
+
+    }
+
+
+
+
 
 
 
@@ -170,7 +214,7 @@ public class Yard {
 	private int[] normalizeCoordinatesForUIGrid(int[] coordinates){
 
 		int[] normalizedCoordinates = {
-				coordinates[0]+2,
+				coordinates[0]+1,
 				coordinates[1]*2+2
 		};
 
