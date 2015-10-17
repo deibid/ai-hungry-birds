@@ -37,6 +37,7 @@ public class Yard {
     private static final int YARD_WIDTH = 8;
     private static final int UI_GRID_HEIGHT = 10;
     private static final int UI_GRID_WIDTH = 19;
+    private static final String COMMAND_PATTERN = "[A-H][0-7]\\s[A-H][0-7]";
 
 
     private boolean mIsWon;
@@ -311,34 +312,49 @@ public class Yard {
 
 
 
-        String pattern = "[A-H][0-7]\\s[A-H][0-7]";
 
-        String test = "H7 H7";
-        System.out.println(test+ test.matches(pattern));
 
-        test = "A3 D6";
-        System.out.println(test+ test.matches(pattern));
+//        String test = "H7 H7";
+//        System.out.println(test+ test.matches(COMMAND_PATTERN));
+//
+//        test = "A3 D6";
+//        System.out.println(test+ test.matches(COMMAND_PATTERN));
+//
+//        test = "G9    D2";
+//        System.out.println(test+ test.matches(COMMAND_PATTERN));
+//
+//        test = "AAA3 D6";
+//        System.out.println(test+ test.matches(COMMAND_PATTERN));
+//
+//        test = " A3 D6";
+//        System.out.println(test+ test.matches(COMMAND_PATTERN));
+//
+//        test = ".AD6";
+//        System.out.println(test+ test.matches(COMMAND_PATTERN));
+//
+//        test = "3J6";
+//        System.out.println(test+ test.matches(COMMAND_PATTERN));
+//
+//        test = " ";
+//        System.out.println(test+ test.matches(COMMAND_PATTERN));
+//
+//        test = "%";
+//        System.out.println(test+ test.matches(COMMAND_PATTERN));
+//
+//
+//
+//        for ( int i = 0 ; i<8;i++){
+//            for ( int j = 0; j<8;j++){
+//                test = String.valueOf(mLetters[i]+String.valueOf(j) + " "+ mLetters[7-i]+String.valueOf(7-j));
+//                System.out.println(test+ test.matches(COMMAND_PATTERN));
+//
+//            }
+//
+//
+//        }
 
-        test = "G9    D2";
-        System.out.println(test+ test.matches(pattern));
 
-        test = "AAA3 D6";
-        System.out.println(test+ test.matches(pattern));
 
-        test = " A3 D6";
-        System.out.println(test+ test.matches(pattern));
-
-        test = ".AD6";
-        System.out.println(test+ test.matches(pattern));
-
-        test = "3J6";
-        System.out.println(test+ test.matches(pattern));
-
-        test = " ";
-        System.out.println(test+ test.matches(pattern));
-
-        test = "%";
-        System.out.println(test+ test.matches(pattern));
 
         return true;
 
