@@ -50,7 +50,7 @@ public class GameManager {
 		
 		
 		Player currentPlayer;
-		String currentMove;
+//		String currentMove;
 		boolean isMoveValid;
 		boolean aiMistake = false;
 		
@@ -59,9 +59,12 @@ public class GameManager {
 		while(!mYard.isWon()){
 			
 			currentPlayer = (mTurn) ? mPlayer2:mPlayer1;
-			
-			
-			
+
+
+            Move currentMove = new Move();
+
+            currentMove.setMovingPlayer(currentPlayer);
+
 			/*Retry Loop*/
 			do{
 				
@@ -69,9 +72,12 @@ public class GameManager {
 				System.out.println("On standby for "+playerName);
 			
 				currentMove = currentPlayer.makeMove();
-				
-				isMoveValid = mYard.isMoveValid(currentMove, currentPlayer);
-				
+
+
+				isMoveValid = mYard.isMoveValid(currentMove);
+				currentMove.setIsValid(isMoveValid);
+
+
 				/* Check weather the AI made a mistake and exits retry loop */
 				if (currentPlayer instanceof AIPlayer && !isMoveValid){
 					aiMistake = true;

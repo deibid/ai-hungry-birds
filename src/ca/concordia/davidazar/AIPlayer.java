@@ -9,12 +9,12 @@ public class AIPlayer implements Player{
 	
 	
 	@Override
-	public String makeMove(){
+	public Move makeMove(){
 		
 		
 		//Aqui viene el procesamiento del AI
 		
-		return "";
+		return null;
 		
 	}
 
