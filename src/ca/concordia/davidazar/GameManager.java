@@ -1,6 +1,8 @@
 package ca.concordia.davidazar;
 
 
+import sun.util.resources.cldr.ms.CalendarData_ms_MY;
+
 public class GameManager {
 
 	
@@ -88,7 +90,8 @@ public class GameManager {
 				
 				String playerName = (mTurn) ? "Player2":"Player1";
 				System.out.println("On standby for "+playerName);
-			
+
+                mYard.printUIGrid();
 				currentMove = currentPlayer.makeMove();
 
                 currentMove.setTurn(mTurn);
@@ -111,7 +114,8 @@ public class GameManager {
 			
 			/* Check weather the AI made a mistake and exits the game loop */
 			if (aiMistake) break;
-			
+
+
 			mYard.playMove(currentMove);
 				
 			mTurn = !mTurn;
@@ -131,7 +135,7 @@ public class GameManager {
 			message = "Seems like the A.I messed up. Congratulations, you win!";
 			
 		else{
-			String winner = (mTurn) ? "Player2":"Player1";
+			String winner = (!mTurn) ? "Player2":"Player1";
 			message = "Congratulations to "+ winner+", you are the winner !";
 		}
 		

@@ -40,7 +40,6 @@ public class Yard {
     private static final String COMMAND_PATTERN = "[A-H][0-7]\\s[A-H][0-7]";
 
 
-    private boolean mIsWon;
     private char[][] mUIGrid = new char[UI_GRID_HEIGHT][UI_GRID_WIDTH];
     private char[][] mActualPositions = new char[YARD_HEIGHT][YARD_WIDTH];
     private char[] mLetters = {'A','B','C','D','E','F','G','H'};
@@ -138,9 +137,7 @@ public class Yard {
 
 
     public boolean isWon(){
-
-
-        return mIsWon;
+        return (isWinningMoveForBird() || isWinningMoveForLarva());
     }
 
 
@@ -169,6 +166,8 @@ public class Yard {
 
     private void refreshUI(){
 
+
+        generateUIGrid();
 
         System.out.println("-----------------------------");
 
@@ -291,7 +290,12 @@ public class Yard {
     }
 
 
-    private void printUIGrid(){
+    public void printUIGrid(){
+
+
+
+        clearTerminal();
+
         for(int i = 0 ; i<UI_GRID_HEIGHT; i++){
             for(int j = 0;j<UI_GRID_WIDTH; j++){
                 System.out.print(mUIGrid[i][j]);
@@ -300,6 +304,9 @@ public class Yard {
         }
     }
 
+    private void clearTerminal(){
+        System.out.print(String.format("\033[2J"));
+    }
 
     private void generateActualPositions(){
 
@@ -567,14 +574,50 @@ public class Yard {
 
 
 
+        /* Wheather we move the larva or the birds */
+        if (move.isPlayer1Turn()){
+            mLarva = move.getTo();
+        }
+
+        else{
+
+            for (int i=0;i<mBirds.length;i++){
+                if(mBirds[i].equals(move.getFrom())){
+                    mBirds[i] = move.getTo();
+                }
+            }
+        }
+
+        refreshUI();
+
+    }
 
 
+    /* Checks weather a bird is at the same spot as the larva
+      i.e it eats it
+       */
+
+    private boolean isWinningMoveForBird(){
+
+
+        for (int i = 0; i < mBirds.length ; i++){
+            if (mBirds[i].equals(mLarva)) return true;
+        }
+
+        return false;
 
     }
 
 
 
 
+    /*Checks weather the larva is at the fence ( row 1 ) */
+    private boolean isWinningMoveForLarva(){
+
+        int larvaRow = Character.getNumericValue(mLarva.charAt(1));
+
+        return larvaRow == 1;
+    }
     /* HELPER METHODS */
 
 

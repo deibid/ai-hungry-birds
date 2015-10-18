@@ -35,16 +35,16 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GameManager.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GameManager.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ca/concordia/davidazar/GameManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.82312924">
-              <caret line="93" column="41" selection-start-line="93" selection-start-column="41" selection-end-line="93" selection-end-column="41" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="93" column="27" selection-start-line="93" selection-start-column="27" selection-end-line="93" selection-end-column="27" />
               <folding>
-                <element signature="e#2936#2937#0" expanded="true" />
-                <element signature="e#2971#2972#0" expanded="true" />
-                <element signature="e#3009#3010#0" expanded="true" />
-                <element signature="e#3044#3045#0" expanded="true" />
+                <element signature="e#3024#3025#0" expanded="true" />
+                <element signature="e#3059#3060#0" expanded="true" />
+                <element signature="e#3097#3098#0" expanded="true" />
+                <element signature="e#3132#3133#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -108,17 +108,18 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Yard.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Yard.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ca/concordia/davidazar/Yard.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="324" column="26" selection-start-line="324" selection-start-column="26" selection-end-line="324" selection-end-column="26" />
+            <state vertical-scroll-proportion="0.94690263">
+              <caret line="296" column="24" selection-start-line="296" selection-start-column="24" selection-end-line="296" selection-end-column="24" />
               <folding>
-                <element signature="method#isWon#0;class#Yard#0" expanded="false" />
+                <element signature="e#3082#3083#0" expanded="true" />
+                <element signature="e#3156#3157#0" expanded="true" />
                 <element signature="method#generateReducedPositions#0;class#Yard#0" expanded="false" />
-                <element signature="method#refreshUI#0;class#Yard#0" expanded="false" />
                 <element signature="method#generateUIGrid#0;class#Yard#0" expanded="false" />
-                <element signature="method#printUIGrid#0;class#Yard#0" expanded="false" />
+                <element signature="e#6813#6814#0" expanded="true" />
+                <element signature="e#6871#6872#0" expanded="true" />
                 <element signature="method#generateActualPositions#0;class#Yard#0" expanded="false" />
               </folding>
             </state>
@@ -145,10 +146,10 @@
         <option value="$PROJECT_DIR$/src/ca/concordia/davidazar/Player.java" />
         <option value="$PROJECT_DIR$/src/ca/concordia/davidazar/AIPlayer.java" />
         <option value="$PROJECT_DIR$/src/ca/concordia/davidazar/Move.java" />
-        <option value="$PROJECT_DIR$/src/ca/concordia/davidazar/Yard.java" />
         <option value="$PROJECT_DIR$/src/ca/concordia/davidazar/HumanPlayer.java" />
         <option value="$PROJECT_DIR$/src/ca/concordia/davidazar/Main.java" />
         <option value="$PROJECT_DIR$/src/ca/concordia/davidazar/GameManager.java" />
+        <option value="$PROJECT_DIR$/src/ca/concordia/davidazar/Yard.java" />
       </list>
     </option>
   </component>
@@ -235,7 +236,7 @@
   <component name="PropertiesComponent">
     <property name="recentsLimit" value="5" />
     <property name="dynamic.classpath" value="false" />
-    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///Users/David 1/Home/Mecatrónica/8vo Semestre (Montreal)/Artificial Intelligence/Project/ai-hungry-birds/src/ca/concordia/davidazar/HumanPlayer.java&#10;pla&#9;FILE&#9;file:///Users/David 1/Home/Mecatrónica/8vo Semestre (Montreal)/Artificial Intelligence/Project/ai-hungry-birds/src/ca/concordia/davidazar/HumanPlayer.java" />
+    <property name="SearchEverywhereHistoryKey" value="print&#9;PSI&#9;JAVA://ca.concordia.davidazar.Yard#printUIGrid&#10;pla&#9;FILE&#9;file:///Users/David 1/Home/Mecatrónica/8vo Semestre (Montreal)/Artificial Intelligence/Project/ai-hungry-birds/src/ca/concordia/davidazar/HumanPlayer.java" />
     <property name="FullScreen" value="true" />
   </component>
   <component name="RunManager" selected="Application.Main">
@@ -305,8 +306,8 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.5589041" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32917318" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.6520548" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32876712" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18497577" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -360,6 +361,25 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/ca/concordia/davidazar/HumanPlayer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="36" column="20" selection-start-line="36" selection-start-column="20" selection-end-line="36" selection-end-column="20" />
+          <folding>
+            <element signature="e#246#247#0" expanded="true" />
+            <element signature="e#283#284#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ca/concordia/davidazar/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/ca/concordia/davidazar/Move.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -393,49 +413,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ca/concordia/davidazar/HumanPlayer.java">
+    <entry file="file://$PROJECT_DIR$/src/ca/concordia/davidazar/GameManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="36" column="20" selection-start-line="36" selection-start-column="20" selection-end-line="36" selection-end-column="20" />
+          <caret line="93" column="27" selection-start-line="93" selection-start-column="27" selection-end-line="93" selection-end-column="27" />
           <folding>
-            <element signature="e#246#247#0" expanded="true" />
-            <element signature="e#283#284#0" expanded="true" />
+            <element signature="e#3024#3025#0" expanded="true" />
+            <element signature="e#3059#3060#0" expanded="true" />
+            <element signature="e#3097#3098#0" expanded="true" />
+            <element signature="e#3132#3133#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ca/concordia/davidazar/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ca/concordia/davidazar/Yard.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="324" column="26" selection-start-line="324" selection-start-column="26" selection-end-line="324" selection-end-column="26" />
+        <state vertical-scroll-proportion="0.94690263">
+          <caret line="296" column="24" selection-start-line="296" selection-start-column="24" selection-end-line="296" selection-end-column="24" />
           <folding>
-            <element signature="method#isWon#0;class#Yard#0" expanded="false" />
+            <element signature="e#3082#3083#0" expanded="true" />
+            <element signature="e#3156#3157#0" expanded="true" />
             <element signature="method#generateReducedPositions#0;class#Yard#0" expanded="false" />
-            <element signature="method#refreshUI#0;class#Yard#0" expanded="false" />
             <element signature="method#generateUIGrid#0;class#Yard#0" expanded="false" />
-            <element signature="method#printUIGrid#0;class#Yard#0" expanded="false" />
+            <element signature="e#6813#6814#0" expanded="true" />
+            <element signature="e#6871#6872#0" expanded="true" />
             <element signature="method#generateActualPositions#0;class#Yard#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ca/concordia/davidazar/GameManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.82312924">
-          <caret line="93" column="41" selection-start-line="93" selection-start-column="41" selection-end-line="93" selection-end-column="41" />
-          <folding>
-            <element signature="e#2936#2937#0" expanded="true" />
-            <element signature="e#2971#2972#0" expanded="true" />
-            <element signature="e#3009#3010#0" expanded="true" />
-            <element signature="e#3044#3045#0" expanded="true" />
           </folding>
         </state>
       </provider>
