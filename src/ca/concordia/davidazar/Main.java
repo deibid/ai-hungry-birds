@@ -7,7 +7,7 @@ public class Main {
 
         int gameType = showMenu();
         GameManager mGameManager = new GameManager(gameType);
-//		mGameManager.startGame();
+		mGameManager.startGame();
 
     }
 

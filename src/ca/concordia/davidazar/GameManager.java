@@ -76,10 +76,12 @@ public class GameManager {
 			currentPlayer = (mTurn) ? mPlayer2:mPlayer1;
 
 
-            Move currentMove = new Move();
+//            Move currentMove = new Move();
+//            currentMove.setMovingPlayer(currentPlayer);
+//            currentMove.setTurn(mTurn);
 
-            currentMove.setMovingPlayer(currentPlayer);
-            currentMove.setTurn(mTurn);
+            Move currentMove;
+
 
 			/*Retry Loop*/
 			do{
@@ -89,7 +91,7 @@ public class GameManager {
 			
 				currentMove = currentPlayer.makeMove();
 
-
+                currentMove.setTurn(mTurn);
 				isMoveValid = mYard.isMoveValid(currentMove);
 				currentMove.setIsValid(isMoveValid);
 
@@ -101,7 +103,8 @@ public class GameManager {
 				}
 				
 				if (!isMoveValid) System.out.println("Unvalid move. Please, try again");
-				
+
+
 				}while(!isMoveValid);
 			
 			

@@ -1,5 +1,7 @@
 package ca.concordia.davidazar;
 
+import java.util.Scanner;
+
 public class HumanPlayer implements Player {
 
 	
@@ -21,9 +23,20 @@ public class HumanPlayer implements Player {
 	@Override
 	public Move makeMove() {
 		
+
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Input your move: [A-H1-8] [A-H1-8]");
+        String command = scanner.nextLine();
+
+
+        Move move = new Move();
+
+        move.setCommand(command);
+        move.setMovingPlayer(this);
 		
-		
-		return null;
+		return move;
 	}
 
 	

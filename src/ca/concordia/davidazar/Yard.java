@@ -324,14 +324,11 @@ public class Yard {
 
     public boolean isMoveValid(Move move){
 
-        /**We will run the command through 5 periods of validations.
+        /**We will run the command through 3 periods of validations.
          *
          * 1 - format
          * 2 - wheather it isnt an empty space and if that selected user is allowed to move a specific character
          * 3 - if the selected move is valid for that character
-         * 4 - is it out of bounds
-         * 5 - if the game is won
-         *
          */
 
 		/* When AI issues an unvalid move, the human player automatically wins */
@@ -346,51 +343,29 @@ public class Yard {
         String command = move.getCommand();
 
 
-        if (!commandCompliesToFormat(command)){
+
+        /* For readibilty purposes, i wrote the flow of the validations explicitly */
+        /* First validation */
+        if (!commandCompliesToFormat(command))
             return false;
-        }
 
         else{
-
+            /*Second validation*/
             move = parseMove(move);
-
-
-            if(!isMoveValidForPlayer(move)){
-
-                return false;
-
-            }
+            if(!isMoveValidForPlayer(move)) return false;
             else{
-
-
-                if(isMoveValidForCharacter(move)){
-
-
-
+                /*Third validation*/
+                if(!isMoveValidForCharacter(move)){
+                    return false;
                 }
-
-
+                else{
+                    /* When every test was passed succesfully */
+                    return true;
+                }
             }
-
-
-
-
-
-            return true;
         }
 
-
-
-
-
-
-
-
-
-
-
     }
-
 
 
     /* This method evaluates if the selected move is valid for the character ( larva or bird )
@@ -533,6 +508,15 @@ public class Yard {
 
     }
 
+
+    /* This method ensures  that the input is presented in the form we want it.
+    *
+    * Uppercase letter from A to H followed by a number from 1 to 8
+    * space
+    * Uppercase letter from A to H followed by a number from 1 to 8
+    *
+    * This also ensures that the move is inside the bounds of the field
+    * */
 
     private boolean commandCompliesToFormat(String command){
 
