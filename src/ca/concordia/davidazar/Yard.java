@@ -58,39 +58,39 @@ public class Yard {
         generateUIGrid();
         refreshUI();
 
-
-        Move move = new Move();
-        move.setCommand("A3 D5");
-        isMoveValid(move);
-
-
-        Move move2 = new Move();
 //
-        move2.setTurn(false);
-        move2.setFrom("D2");
-        move2.setTo("D3");
-        isMoveValidForCharacter(move2);
-
-        move2.setTurn(true);
-        move2.setFrom("E1");
-        move2.setTo("D3");
-        isMoveValidForCharacter(move2);
-
-        move2.setTurn(true);
-        move2.setFrom("F1");
-        move2.setTo("D3");
-        isMoveValidForCharacter(move2);
-
-        move2.setTurn(true);
-        move2.setFrom("D2");
-        move2.setTo("C3");
-        isMoveValidForCharacter(move2);
-
-        move2.setTurn(true);
-        move2.setFrom("G1");
-        move2.setTo("H2");
-        isMoveValidForCharacter(move2);
-
+//        Move move = new Move();
+//        move.setCommand("A3 D5");
+//        isMoveValid(move);
+//
+//
+//        Move move2 = new Move();
+////
+//        move2.setTurn(false);
+//        move2.setFrom("D2");
+//        move2.setTo("D3");
+//        isMoveValidForCharacter(move2);
+//
+//        move2.setTurn(true);
+//        move2.setFrom("E1");
+//        move2.setTo("D3");
+//        isMoveValidForCharacter(move2);
+//
+//        move2.setTurn(true);
+//        move2.setFrom("F1");
+//        move2.setTo("D3");
+//        isMoveValidForCharacter(move2);
+//
+//        move2.setTurn(true);
+//        move2.setFrom("D2");
+//        move2.setTo("C3");
+//        isMoveValidForCharacter(move2);
+//
+//        move2.setTurn(true);
+//        move2.setFrom("G1");
+//        move2.setTo("H2");
+//        isMoveValidForCharacter(move2);
+//
 
 //        Move move2 = new Move();
 //
@@ -141,6 +141,15 @@ public class Yard {
     }
 
 
+    public boolean didLarvaWin(){
+
+        return isWinningMoveForLarva();
+
+    }
+
+    public boolean didBirdWin(){
+        return isWinningMoveForBird();
+    }
 
     public String getLarva() {
         return mLarva;
@@ -169,14 +178,14 @@ public class Yard {
 
         generateUIGrid();
 
-        System.out.println("-----------------------------");
-
-
-        System.out.println(getNumericCoordinates(mLarva));
-        System.out.println(normalizeCoordinatesForUIGrid(getNumericCoordinates(mLarva)));
-
-
-        System.out.println("-----------------------------");
+//        System.out.println("-----------------------------");
+//
+//
+//        System.out.println(getNumericCoordinates(mLarva));
+//        System.out.println(normalizeCoordinatesForUIGrid(getNumericCoordinates(mLarva)));
+//
+//
+//        System.out.println("-----------------------------");
 
 
         int[] normalizedLarva = normalizeCoordinatesForUIGrid(getNumericCoordinates(mLarva));
@@ -218,8 +227,8 @@ public class Yard {
         int number = Character.getNumericValue(textCoordinates.charAt(1));
 
 
-        System.out.println("Letra - "+letter);
-        System.out.println("Numero - "+number);
+//        System.out.println("Letra - "+letter);
+//        System.out.println("Numero - "+number);
 
         int rowCoordinate = 8-number;
         int columnCoordinate = getLetterIndex(letter);
@@ -229,8 +238,8 @@ public class Yard {
         coordinates[0] = rowCoordinate;
         coordinates[1] = columnCoordinate;
 
-        System.out.println("row - "+rowCoordinate);
-        System.out.println("column - "+columnCoordinate);
+//        System.out.println("row - "+rowCoordinate);
+//        System.out.println("column - "+columnCoordinate);
 
         return coordinates;
 
@@ -246,12 +255,12 @@ public class Yard {
         };
 
 
-        System.out.println("-----------------");
-        System.out.println("ROW UI = "+coordinates[0]);
-        System.out.println("COLUMN UI = "+coordinates[1]);
-
-        System.out.println("ROW UI = "+normalizedCoordinates[0]);
-        System.out.println("COLUMN UI = "+normalizedCoordinates[1]);
+//        System.out.println("-----------------");
+//        System.out.println("ROW UI = "+coordinates[0]);
+//        System.out.println("COLUMN UI = "+coordinates[1]);
+//
+//        System.out.println("ROW UI = "+normalizedCoordinates[0]);
+//        System.out.println("COLUMN UI = "+normalizedCoordinates[1]);
 
         return normalizedCoordinates;
     }
@@ -285,7 +294,7 @@ public class Yard {
             letterIndex = 0;
             numberIndex++;
         }
-        printUIGrid();
+//        printUIGrid();
 
     }
 
@@ -381,7 +390,7 @@ public class Yard {
     private boolean isMoveValidForCharacter(Move move){
 
         /*Analize the coordinates as the actual gro [1-8][A-H] .. (not zero index)*/
-        System.out.println("isMoveValidForCharacter\n\n\n");
+//        System.out.println("isMoveValidForCharacter\n\n\n");
 
         String from = move.getFrom();
         String to = move.getTo();
@@ -393,13 +402,13 @@ public class Yard {
         int toRow = Character.getNumericValue(to.charAt(1));
         int toColumn = getLetterIndex(to.charAt(0))+1;
 
-
-        System.out.println("fromRow "+fromRow);
-        System.out.println("fromColumn "+fromColumn);
-        System.out.println("toRow "+toRow);
-        System.out.println("toColumn "+toColumn);
-
-
+//
+//        System.out.println("fromRow "+fromRow);
+//        System.out.println("fromColumn "+fromColumn);
+//        System.out.println("toRow "+toRow);
+//        System.out.println("toColumn "+toColumn);
+//
+//
 
 //        return true;
 
@@ -410,11 +419,11 @@ public class Yard {
             int columnDifference = fromColumn - toColumn;
             /* moving one column and one row diagonally in any directions*/
             if( Math.abs(rowDifference)==1 && Math.abs(columnDifference)==1){
-                System.out.println("Valido para Larva");
+//                System.out.println("Valido para Larva");
                 return true;
             }
             else {
-                System.out.println("Invalido para Larva");
+//                System.out.println("Invalido para Larva");
                 return false;
             }
 
@@ -427,18 +436,18 @@ public class Yard {
             int columnDifference = fromColumn - toColumn;
             /* moving one column and one row diagonally going forward */
             if( rowDifference == -1 && Math.abs(columnDifference)==1){
-                System.out.println("Valido para Bird");
+//                System.out.println("Valido para Bird");
                 return true;
             }
             else{
-                System.out.println("Invalido para Bird");
+//                System.out.println("Invalido para Bird");
                 return false;
             }
 
 
         }
 
-        System.out.println("Tratando de mover espacio vacio");
+//        System.out.println("Tratando de mover espacio vacio");
         return false;
 
 
@@ -451,7 +460,7 @@ public class Yard {
     private boolean isMoveValidForPlayer(Move move){
 
 
-        System.out.println("Is move valid for player");
+//        System.out.println("Is move valid for player");
 
         Player movingPlayer = move.getMovingPlayer();
 
@@ -466,9 +475,9 @@ public class Yard {
         if(move.isPlayer1Turn()) {
 
 
-            System.out.println("Player 1 turn");
-            System.out.println("From "+from);
-            System.out.println("Valid? "+isLarvaAtPosition(from));
+//            System.out.println("Player 1 turn");
+//            System.out.println("From "+from);
+//            System.out.println("Valid? "+isLarvaAtPosition(from));
 
             return (isLarvaAtPosition(from));
 
@@ -476,9 +485,9 @@ public class Yard {
         }
         else{
 
-            System.out.println("Player 2 turn");
-            System.out.println("From "+from);
-            System.out.println("Valid? "+isBirdAtPosition(from));
+//            System.out.println("Player 2 turn");
+//            System.out.println("From "+from);
+//            System.out.println("Valid? "+isBirdAtPosition(from));
 
             return (isBirdAtPosition(from));
         }
@@ -491,12 +500,12 @@ public class Yard {
     private Move parseMove(Move move){
 
 
-        System.out.println("Parsing move");
+//        System.out.println("Parsing move");
 
         String command = move.getCommand();
 
 
-        System.out.println("Command "+command);
+//        System.out.println("Command "+command);
 
         /* Split the string at the space character */
         String[] parts = command.split(" ");
@@ -504,8 +513,8 @@ public class Yard {
         String from = parts[0];
         String to = parts[1];
 
-        System.out.println("From "+from);
-        System.out.println("To "+to);
+//        System.out.println("From "+from);
+//        System.out.println("To "+to);
 
 
         move.setFrom(from);
@@ -614,9 +623,15 @@ public class Yard {
     /*Checks weather the larva is at the fence ( row 1 ) */
     private boolean isWinningMoveForLarva(){
 
-        int larvaRow = Character.getNumericValue(mLarva.charAt(1));
 
+
+        for(String s: mBirds){
+            if(s.equals(mLarva)) return false;
+        }
+
+        int larvaRow = Character.getNumericValue(mLarva.charAt(1));
         return larvaRow == 1;
+
     }
     /* HELPER METHODS */
 

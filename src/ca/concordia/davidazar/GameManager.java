@@ -59,11 +59,45 @@ public class GameManager {
 		}
 		
 	}
-	
-	
-	
-	
-	public void startGame(){
+
+    public GameManager(GameSettings settings){
+
+        mGameType = settings.getGameType();
+        mPlayer1Name = settings.getPlayer1Name();
+        mPlayer2Name = settings.getPlayer2Name();
+
+        mYard = Yard.getInstance();
+
+        if (mGameType == VERSUS_HUMAN){
+            System.out.println("Versus HUMAN generated");
+            mPlayer1 = new HumanPlayer();
+            mPlayer2 = new HumanPlayer();
+
+            ((HumanPlayer)mPlayer1).setPlayerName(mPlayer1Name);
+            ((HumanPlayer)mPlayer2).setPlayerName(mPlayer2Name);
+
+        }
+
+        //Para el proximo deliverable
+        else{
+
+            System.out.println("Versus AI generated");
+            mPlayer1 = new HumanPlayer();
+            mPlayer2 = new AIPlayer();
+
+            ((HumanPlayer)mPlayer1).setPlayerName(mPlayer1Name);
+            ((AIPlayer)mPlayer2).setPlayerName(AI_NAME_PREFIX);
+
+
+        }
+
+    }
+
+
+
+
+
+    public void startGame(){
 		
 		
 		Player currentPlayer;
@@ -88,10 +122,12 @@ public class GameManager {
 			/*Retry Loop*/
 			do{
 				
-				String playerName = (mTurn) ? "Player2":"Player1";
-				System.out.println("On standby for "+playerName);
+//				String playerName = (mTurn) ? "Player2":"Player1";
+                String playerName = getPlayerName(currentPlayer);
+                String character = (mTurn)? "(BIRD)":"(LARVA)";
+				System.out.println("On standby for player "+playerName+" "+character);
 
-                mYard.printUIGrid();
+//                mYard.printUIGrid();
 				currentMove = currentPlayer.makeMove();
 
                 currentMove.setTurn(mTurn);
@@ -135,13 +171,27 @@ public class GameManager {
 			message = "Seems like the A.I messed up. Congratulations, you win!";
 			
 		else{
-			String winner = (!mTurn) ? "Player2":"Player1";
-			message = "Congratulations to "+ winner+", you are the winner !";
+
+//            Player winningPlayer = (!mTurn) ? mPlayer2:mPlayer1;
+            Player winningPlayer = (mYard.didLarvaWin()) ? mPlayer1:mPlayer2;
+
+
+			String winner = getPlayerName(winningPlayer);
+
+
+			message = "Congratulations "+ winner+", you are the winner !";
 		}
 		
 		System.out.println(message);
 	}
 
+
+
+    private String getPlayerName(Player player){
+
+        if(player instanceof HumanPlayer) return ((HumanPlayer)player).getPlayerName();
+        else return AI_NAME_PREFIX;
+    }
     public String getPlayer1Name() {
         return mPlayer1Name;
     }
