@@ -17,7 +17,6 @@ public class Main {
 		
 		System.out.println("Welcome to Hungry Birds!");
 
-
 		return GameManager.VERSUS_HUMAN;
 	}
 }

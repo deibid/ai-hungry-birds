@@ -13,6 +13,14 @@ public class GameManager {
 	private Player mPlayer2;
 	
 	//private AI mAI;
+
+
+    private String mPlayer1Name = "Player1";
+    private String mPlayer2Name = "Player2";
+
+    public static final String AI_NAME_PREFIX = "AI Force";
+
+
 	
 	private Yard mYard;
 	
@@ -29,6 +37,9 @@ public class GameManager {
 			System.out.println("Versus HUMAN generated");	
 			mPlayer1 = new HumanPlayer();
 			mPlayer2 = new HumanPlayer();
+
+            ((HumanPlayer)mPlayer1).setPlayerName(mPlayer1Name);
+            ((HumanPlayer)mPlayer2).setPlayerName(mPlayer2Name);
 				
 		}
 		
@@ -38,6 +49,10 @@ public class GameManager {
 			System.out.println("Versus AI generated");
 			mPlayer1 = new HumanPlayer();
 			mPlayer2 = new AIPlayer();
+
+            ((HumanPlayer)mPlayer1).setPlayerName(mPlayer1Name);
+            ((AIPlayer)mPlayer2).setPlayerName(AI_NAME_PREFIX);
+
 			
 		}
 		
@@ -64,6 +79,7 @@ public class GameManager {
             Move currentMove = new Move();
 
             currentMove.setMovingPlayer(currentPlayer);
+            currentMove.setTurn(mTurn);
 
 			/*Retry Loop*/
 			do{
@@ -118,9 +134,17 @@ public class GameManager {
 		
 		System.out.println(message);
 	}
-	
-	
-	/**
+
+    public String getPlayer1Name() {
+        return mPlayer1Name;
+    }
+
+    public String getPlayer2Name() {
+        return mPlayer2Name;
+    }
+
+
+    /**
 	 * ciclo de game loop
 	 * 
 	 * 

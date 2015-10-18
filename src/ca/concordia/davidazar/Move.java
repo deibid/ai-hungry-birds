@@ -8,6 +8,8 @@ package ca.concordia.davidazar;
 public class Move {
 
 
+
+
     private Player mMovingPlayer;
 
     private String mCommand;
@@ -15,7 +17,29 @@ public class Move {
     private String mTo;
     private boolean mIsValid;
 
+    /* false for player1, true for player2 */
+    private boolean mTurn;
 
+
+    private boolean isTurn() {
+        return mTurn;
+    }
+
+    public void setTurn(boolean mTurn) {
+        this.mTurn = mTurn;
+    }
+
+
+    public boolean isPlayer2Turn(){
+
+        return isTurn();
+    }
+
+    public boolean isPlayer1Turn(){
+
+        return !isTurn();
+
+    }
 
     public Player getMovingPlayer() {
         return mMovingPlayer;
