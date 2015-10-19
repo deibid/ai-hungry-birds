@@ -1,14 +1,19 @@
 package ca.concordia.davidazar;
 
 /**
- * Created by David on 18/10/15.
+ *
+ * This class behaves as a Java Bean containing all relevant information about the game
+ * @author David Azar Serur
  */
 public class GameSettings {
 
-
-
+    /* Human VS Human or Human vs AI */
     private int mGameType;
+
+    /* First player's name */
     private String mPlayer1Name;
+
+    /* Second player's name */
     private String mPlayer2Name;
 
 

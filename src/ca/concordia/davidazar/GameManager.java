@@ -1,65 +1,48 @@
 package ca.concordia.davidazar;
 
 
-import sun.util.resources.cldr.ms.CalendarData_ms_MY;
-
+/**
+ * This class acts as the manager of the game.
+ * It creates the appropiate Player objects, validates a faulty input and carries through
+ * the overall flow of the game
+ *
+ * @author David Azar Serur
+ */
 public class GameManager {
 
-	
+
+    /* Constant declarations */
 	public static final int VERSUS_HUMAN = 0x00;
 	public static final int VERSUS_AI = 0x01;
-	
+
+    /* Wheter its Human vs Human or Human VS A.I */
 	private int mGameType;
-	
+
+
+    /*Both Player entities */
 	private Player mPlayer1;
 	private Player mPlayer2;
-	
-	//private AI mAI;
 
 
-    private String mPlayer1Name = "Player1";
-    private String mPlayer2Name = "Player2";
+    /* Player names inputed from the terminal */
+    private String mPlayer1Name;
+    private String mPlayer2Name;
 
+    /* Default AI name */
     public static final String AI_NAME_PREFIX = "AI Force";
 
 
-	
+	/* The Yard singleton reference */
 	private Yard mYard;
 	
 	/** Variable to distinguish the current turn. False is for player1's turn, false for player2's */
-	private boolean mTurn = false; 
-	
-	
-	public GameManager(int type){
-		
-		mGameType = type;
-		mYard = Yard.getInstance();
-		
-		if (mGameType == VERSUS_HUMAN){
-			System.out.println("Versus HUMAN generated");	
-			mPlayer1 = new HumanPlayer();
-			mPlayer2 = new HumanPlayer();
+	private boolean mTurn = false;
 
-            ((HumanPlayer)mPlayer1).setPlayerName(mPlayer1Name);
-            ((HumanPlayer)mPlayer2).setPlayerName(mPlayer2Name);
-				
-		}
-		
-		//Para el proximo deliverable
-		else{
-		
-			System.out.println("Versus AI generated");
-			mPlayer1 = new HumanPlayer();
-			mPlayer2 = new AIPlayer();
 
-            ((HumanPlayer)mPlayer1).setPlayerName(mPlayer1Name);
-            ((AIPlayer)mPlayer2).setPlayerName(AI_NAME_PREFIX);
-
-			
-		}
-		
-	}
-
+    /**
+     * Constructor taking a GameSettings object as a single parameter
+     * @param settings metadata about the game such as player names and game type
+     */
     public GameManager(GameSettings settings){
 
         mGameType = settings.getGameType();
@@ -78,7 +61,7 @@ public class GameManager {
 
         }
 
-        //Para el proximo deliverable
+        //For the next deliverable..
         else{
 
             System.out.println("Versus AI generated");
@@ -94,14 +77,16 @@ public class GameManager {
     }
 
 
-
-
-
+    /**
+     * This method contains the main game loop..
+     * Here, the turns switch, validations occur and manipulations to the grid are made
+     */
     public void startGame(){
 		
-		
+        /* Reference to the player who is actually moving */
 		Player currentPlayer;
-//		String currentMove;
+
+
 		boolean isMoveValid;
 		boolean aiMistake = false;
 		
@@ -111,27 +96,24 @@ public class GameManager {
 			
 			currentPlayer = (mTurn) ? mPlayer2:mPlayer1;
 
-
-//            Move currentMove = new Move();
-//            currentMove.setMovingPlayer(currentPlayer);
-//            currentMove.setTurn(mTurn);
-
             Move currentMove;
 
 
 			/*Retry Loop*/
 			do{
-				
-//				String playerName = (mTurn) ? "Player2":"Player1";
+
                 String playerName = getPlayerName(currentPlayer);
                 String character = (mTurn)? "(BIRD)":"(LARVA)";
 				System.out.println("On standby for player "+playerName+" "+character);
 
-//                mYard.printUIGrid();
+                /* Here, we get back the generated move, wheter its a human input or AI generated move */
 				currentMove = currentPlayer.makeMove();
 
                 currentMove.setTurn(mTurn);
+
+                /*All the validations occur in this call */
 				isMoveValid = mYard.isMoveValid(currentMove);
+
 				currentMove.setIsValid(isMoveValid);
 
 
@@ -143,7 +125,7 @@ public class GameManager {
 				
 				if (!isMoveValid) System.out.println("Unvalid move. Please, try again");
 
-
+                /*Repeat if a human made an invalid move */
 				}while(!isMoveValid);
 			
 			
@@ -152,33 +134,37 @@ public class GameManager {
 			if (aiMistake) break;
 
 
+            /* Excecute the play after all forms of validations */
 			mYard.playMove(currentMove);
-				
+
+            /* Toggle turn*/
 			mTurn = !mTurn;
 			
 		}
-		
+
+        /* When the game ends.. */
 		displayFinalMessage(aiMistake);
 		
 	}
-	
-	
+
+
+    /**
+     *
+     * This method shows the final message and indicates the winner
+     * @param aiMistake flag indicating the AI made a mistake
+     */
 	private void displayFinalMessage(boolean aiMistake){
 		
 		String message = "";
-		
+
+        /*If the AI made a mistake */
 		if (aiMistake)
 			message = "Seems like the A.I messed up. Congratulations, you win!";
-			
+
+
 		else{
-
-//            Player winningPlayer = (!mTurn) ? mPlayer2:mPlayer1;
             Player winningPlayer = (mYard.didLarvaWin()) ? mPlayer1:mPlayer2;
-
-
 			String winner = getPlayerName(winningPlayer);
-
-
 			message = "Congratulations "+ winner+", you are the winner !";
 		}
 		
@@ -192,40 +178,6 @@ public class GameManager {
         if(player instanceof HumanPlayer) return ((HumanPlayer)player).getPlayerName();
         else return AI_NAME_PREFIX;
     }
-    public String getPlayer1Name() {
-        return mPlayer1Name;
-    }
 
-    public String getPlayer2Name() {
-        return mPlayer2Name;
-    }
-
-
-    /**
-	 * ciclo de game loop
-	 * 
-	 * 
-	 * 1 - alguien ya gano?
-	 * si- sal y muestra
-	 * no-
-	 * 
-	 * 2- jugar turno correspondiente
-	 * 
-	 * 3 - el move es valido?
-	 * si - sigue
-	 * no - 
-	 * 
-	 * 4 - es humano ?
-	 * 
-	 * si - repite tiro
-	 * no - pierde
-	 * 
-	 * 5 - mostrar cambios en tablero
-	 * 
-	 * 
-	 * 
-	 * 
-	 * @return
-	 */
 	
 }
