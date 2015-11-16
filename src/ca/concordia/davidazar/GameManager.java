@@ -18,6 +18,8 @@ public class GameManager {
     /* Wheter its Human vs Human or Human VS A.I */
 	private int mGameType;
 
+    private int mAICharacter;
+
 
     /*Both Player entities */
 	private Player mPlayer1;
@@ -48,6 +50,7 @@ public class GameManager {
         mGameType = settings.getGameType();
         mPlayer1Name = settings.getPlayer1Name();
         mPlayer2Name = settings.getPlayer2Name();
+        mAICharacter = settings.getAICharacter();
 
         mYard = Yard.getInstance();
 
@@ -65,11 +68,25 @@ public class GameManager {
         else{
 
             System.out.println("Versus AI generated");
-            mPlayer1 = new HumanPlayer();
-            mPlayer2 = new AIPlayer();
 
-            ((HumanPlayer)mPlayer1).setPlayerName(mPlayer1Name);
-            ((AIPlayer)mPlayer2).setPlayerName(AI_NAME_PREFIX);
+            if(mAICharacter == GameSettings.AI_PLAYS_LARVA){
+
+                mPlayer1 = new AIPlayer();
+                mPlayer2 = new HumanPlayer();
+
+                ((HumanPlayer)mPlayer2).setPlayerName(mPlayer1Name);
+                ((AIPlayer)mPlayer1).setPlayerName(AI_NAME_PREFIX);
+            }
+
+            else{
+                mPlayer1 = new HumanPlayer();
+                mPlayer2 = new AIPlayer();
+
+
+                ((HumanPlayer)mPlayer1).setPlayerName(mPlayer1Name);
+                ((AIPlayer)mPlayer2).setPlayerName(AI_NAME_PREFIX);
+            }
+
 
 
         }
@@ -127,14 +144,13 @@ public class GameManager {
 
                 /*Repeat if a human made an invalid move */
 				}while(!isMoveValid);
-			
-			
+
 			
 			/* Check weather the AI made a mistake and exits the game loop */
 			if (aiMistake) break;
 
 
-            /* Excecute the play after all forms of validations */
+            /* Execute the play after all forms of validations */
 			mYard.playMove(currentMove);
 
             /* Toggle turn*/

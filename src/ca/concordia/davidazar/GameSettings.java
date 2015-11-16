@@ -17,8 +17,22 @@ public class GameSettings {
     private String mPlayer2Name;
 
 
+    private int mAIPlayer;
+
+    public static final int AI_PLAYS_LARVA = 0x03;
+    public static final int AI_PLAYS_BIRDS = 0x04;
+
+
     public GameSettings(int mGameType, String mPlayer1Name, String mPlayer2Name) {
         this.mGameType = mGameType;
+        this.mPlayer1Name = mPlayer1Name;
+        this.mPlayer2Name = mPlayer2Name;
+    }
+
+
+    public GameSettings(int mGameType,int aiPlayer, String mPlayer1Name, String mPlayer2Name) {
+        this.mGameType = mGameType;
+        this.mAIPlayer = aiPlayer;
         this.mPlayer1Name = mPlayer1Name;
         this.mPlayer2Name = mPlayer2Name;
     }
@@ -34,5 +48,9 @@ public class GameSettings {
 
     public String getPlayer2Name() {
         return mPlayer2Name;
+    }
+
+    public int getAICharacter() {
+        return mAIPlayer;
     }
 }

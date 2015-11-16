@@ -40,6 +40,10 @@ public class Yard {
     private String[] mBirds;
 
 
+    /** Variable to distinguish the current turn. False is for player1's turn, false for player2's */
+    private boolean mTurn = false;
+
+
 
     private static Yard instance = new Yard();
 
@@ -223,6 +227,7 @@ public class Yard {
                 }
                 else{
                     /* When every test was passed succesfully */
+                    mTurn = move.isPlayer2Turn();
                     return true;
                 }
             }
@@ -435,7 +440,7 @@ public class Yard {
     }
 
     /*This method returns the alphabetic index of a character in the allowed list (A-H)*/
-    private int getLetterIndex(char c){
+    public int getLetterIndex(char c){
 
         for( int i = 0; i< mLetters.length; i++){
             if(mLetters[i] == c) return i;
@@ -447,6 +452,22 @@ public class Yard {
     }
 
 
+    /**
+     * Method called by AI.
+     * Delivers a current overview of the grid in a State object
+     * @return Root State representing the current positions
+     */
+    public State getCurrentState(){
+
+        State state = new State();
+
+        state.setLarva(mLarva);
+        state.setBirds(mBirds);
+        state.setIsLarvaNode(!mTurn);
+
+        return state;
+
+    }
 
 
 }
