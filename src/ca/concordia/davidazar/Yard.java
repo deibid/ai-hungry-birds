@@ -1,6 +1,8 @@
 package ca.concordia.davidazar;
 
 
+import java.util.ArrayList;
+
 /**
  * This class, designed as a Singleton, contains, manages and operates all stuff regarding
  * the yard. It is exposed as a singleton so that it can be accessed from anywhere and only
@@ -22,6 +24,13 @@ public class Yard {
     private static final int UI_GRID_WIDTH = 19;
     private static final String COMMAND_PATTERN = "[A-H][0-7]\\s[A-H][0-7]";
 
+
+    private static final int TO_UPPER_RIGHT_OFFSET = 11;
+    private static final int TO_LOWER_RIGHT_OFFSET = -9;
+    private static final int TO_LOWER_LEFT_OFFSET = -11;
+    private static final int TO_UPPER_LEFT_OFFSET = 9;
+
+    private static final int MAX_POSSIBLE_LARVA_MOVES = 4;
 
     /*UI matrix */
     private char[][] mUIGrid = new char[UI_GRID_HEIGHT][UI_GRID_WIDTH];
@@ -72,12 +81,20 @@ public class Yard {
     }
 
     private void generateInitialPositions() {
-        mLarva = "D2";
+//        mLarva = "D2";
+//        mBirds = new String[4];
+//        mBirds[0] = "A1";
+//        mBirds[1] = "C1";
+//        mBirds[2] = "E1";
+//        mBirds[3] = "G1";
+
+        mLarva = "C3";
         mBirds = new String[4];
-        mBirds[0] = "A1";
-        mBirds[1] = "C1";
-        mBirds[2] = "E1";
-        mBirds[3] = "G1";
+        mBirds[0] = "B4";
+        mBirds[1] = "D4";
+        mBirds[2] = "D2";
+        mBirds[3] = "B2";
+
     }
 
     /* Updates the UI Grid to show the modified positions for the larva and birds */
@@ -357,13 +374,49 @@ public class Yard {
 
     private boolean isWinningMoveForBird() {
 
+//
+//
+//
+//
+//        for (int i = 0; i < mBirds.length; i++) {
+//            if (mBirds[i].equals(mLarva)) return true;
+//        }
+//
+//        return false;
 
-        for (int i = 0; i < mBirds.length; i++) {
-            if (mBirds[i].equals(mLarva)) return true;
+
+        int numericLarvaCoordinate = Utils.getNumericCoordinate(mLarva);
+        int[] numericBirdCoordinates = Utils.getNumericCoordinate(mBirds);
+
+
+        int hits = 0;
+        for (int i = 0; i < MAX_POSSIBLE_LARVA_MOVES; i++) {
+
+            int tempCoordinate = 0;
+
+            switch (i) {
+
+                case 0:
+                    tempCoordinate = numericLarvaCoordinate + TO_UPPER_RIGHT_OFFSET;
+                    break;
+                case 1:
+                    tempCoordinate = numericLarvaCoordinate + TO_LOWER_RIGHT_OFFSET;
+                    break;
+                case 2:
+                    tempCoordinate = numericLarvaCoordinate + TO_LOWER_LEFT_OFFSET;
+                    break;
+                case 3:
+                    tempCoordinate = numericLarvaCoordinate + TO_UPPER_LEFT_OFFSET;
+                    break;
+            }
+
+            for(int j = 0;j < numericBirdCoordinates.length; j++){
+                if(tempCoordinate == numericBirdCoordinates[j]) {
+                    hits++;
+                }
+            }
         }
-
-        return false;
-
+        return hits==4;
     }
 
 
