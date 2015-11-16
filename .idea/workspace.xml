@@ -45,10 +45,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AIPlayer.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="AIPlayer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ca/concordia/davidazar/AIPlayer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.14957266">
+            <state vertical-scroll-proportion="0.0">
               <caret line="25" column="43" selection-start-line="25" selection-start-column="43" selection-end-line="25" selection-end-column="43" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -161,11 +161,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Yard.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Yard.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ca/concordia/davidazar/Yard.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="445" column="0" selection-start-line="445" selection-start-column="0" selection-end-line="445" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.5470086">
+              <caret line="217" column="50" selection-start-line="217" selection-start-column="50" selection-end-line="217" selection-end-column="50" />
               <folding />
             </state>
           </provider>
@@ -194,9 +194,9 @@
         <option value="$PROJECT_DIR$/src/ca/concordia/davidazar/GameSettings.java" />
         <option value="$PROJECT_DIR$/src/ca/concordia/davidazar/GameManager.java" />
         <option value="$PROJECT_DIR$/src/ca/concordia/davidazar/Main.java" />
-        <option value="$PROJECT_DIR$/src/ca/concordia/davidazar/Yard.java" />
         <option value="$PROJECT_DIR$/src/ca/concordia/davidazar/State.java" />
         <option value="$PROJECT_DIR$/src/ca/concordia/davidazar/AIPlayer.java" />
+        <option value="$PROJECT_DIR$/src/ca/concordia/davidazar/Yard.java" />
       </list>
     </option>
   </component>
@@ -283,7 +283,7 @@
   <component name="PropertiesComponent">
     <property name="recentsLimit" value="5" />
     <property name="dynamic.classpath" value="false" />
-    <property name="SearchEverywhereHistoryKey" value="Pla&#9;FILE&#9;file:///Users/David 1/Home/Mecatrónica/8vo Semestre (Montreal)/Artificial Intelligence/Project/ai-hungry-birds/src/ca/concordia/davidazar/HumanPlayer.java&#10;clea&#9;PSI&#9;JAVA://ca.concordia.davidazar.Yard#clearTerminal&#10;print&#9;PSI&#9;JAVA://ca.concordia.davidazar.Yard#printUIGrid&#10;pla&#9;FILE&#9;file:///Users/David 1/Home/Mecatrónica/8vo Semestre (Montreal)/Artificial Intelligence/Project/ai-hungry-birds/src/ca/concordia/davidazar/HumanPlayer.java" />
+    <property name="SearchEverywhereHistoryKey" value="emp&#9;PSI&#9;JAVA://ca.concordia.davidazar.Yard#isPositionEmpty&#10;Pla&#9;FILE&#9;file:///Users/David 1/Home/Mecatrónica/8vo Semestre (Montreal)/Artificial Intelligence/Project/ai-hungry-birds/src/ca/concordia/davidazar/HumanPlayer.java&#10;clea&#9;PSI&#9;JAVA://ca.concordia.davidazar.Yard#clearTerminal&#10;print&#9;PSI&#9;JAVA://ca.concordia.davidazar.Yard#printUIGrid&#10;pla&#9;FILE&#9;file:///Users/David 1/Home/Mecatrónica/8vo Semestre (Montreal)/Artificial Intelligence/Project/ai-hungry-birds/src/ca/concordia/davidazar/HumanPlayer.java" />
     <property name="FullScreen" value="true" />
     <property name="settings.editor.selected.configurable" value="preferences.editor" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
@@ -750,14 +750,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ca/concordia/davidazar/Yard.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="445" column="0" selection-start-line="445" selection-start-column="0" selection-end-line="445" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ca/concordia/davidazar/State.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -795,7 +787,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ca/concordia/davidazar/AIPlayer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.14957266">
+        <state vertical-scroll-proportion="0.0">
           <caret line="25" column="43" selection-start-line="25" selection-start-column="43" selection-end-line="25" selection-end-column="43" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -805,6 +797,14 @@
             <element signature="e#1241#1242#0" expanded="true" />
             <element signature="method#getLarvaChildNodes#0;class#AIPlayer#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ca/concordia/davidazar/Yard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5470086">
+          <caret line="217" column="50" selection-start-line="217" selection-start-column="50" selection-end-line="217" selection-end-column="50" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -2,15 +2,12 @@ package ca.concordia.davidazar;
 
 
 /**
- *
  * This class, designed as a Singleton, contains, manages and operates all stuff regarding
  * the yard. It is exposed as a singleton so that it can be accessed from anywhere and only
  * exists as a single entity
  * (i.e The AI needs to know the current state so it can generate new moves)
  *
- *
  * @author David Azar Serur
- *
  */
 
 public class Yard {
@@ -30,7 +27,7 @@ public class Yard {
     private char[][] mUIGrid = new char[UI_GRID_HEIGHT][UI_GRID_WIDTH];
 
     /* List of allowed characters */
-    private char[] mLetters = {'A','B','C','D','E','F','G','H'};
+    private char[] mLetters = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'};
 
 
     /* Always contains the current position for the larva */
@@ -40,41 +37,41 @@ public class Yard {
     private String[] mBirds;
 
 
-    /** Variable to distinguish the current turn. False is for player1's turn, false for player2's */
+    /**
+     * Variable to distinguish the current turn. False is for player1's turn, false for player2's
+     */
     private boolean mTurn = false;
-
 
 
     private static Yard instance = new Yard();
 
-    private Yard(){
+    private Yard() {
         generateInitialPositions();
         generateUIGrid();
         refreshUI();
     }
 
 
-
-    public static Yard getInstance(){
+    public static Yard getInstance() {
         return instance;
     }
 
 
     /* Checks whether the game is finished */
-    public boolean isWon(){
+    public boolean isWon() {
         return (isWinningMoveForBird() || isWinningMoveForLarva());
     }
 
 
-    public boolean didLarvaWin(){
+    public boolean didLarvaWin() {
         return isWinningMoveForLarva();
     }
 
-    public boolean didBirdWin(){
+    public boolean didBirdWin() {
         return isWinningMoveForBird();
     }
 
-    private void generateInitialPositions(){
+    private void generateInitialPositions() {
         mLarva = "D2";
         mBirds = new String[4];
         mBirds[0] = "A1";
@@ -84,7 +81,7 @@ public class Yard {
     }
 
     /* Updates the UI Grid to show the modified positions for the larva and birds */
-    private void refreshUI(){
+    private void refreshUI() {
 
 
         /* Restarts the grid */
@@ -96,7 +93,7 @@ public class Yard {
         int[] normalizedBird;
 
         /* Fills it */
-        for( int i = 0;i<mBirds.length; i ++){
+        for (int i = 0; i < mBirds.length; i++) {
 
             normalizedBird = normalizeCoordinatesForUIGrid(getNumericCoordinates(mBirds[i]));
             mUIGrid[normalizedBird[0]][normalizedBird[1]] = BIRD;
@@ -108,18 +105,14 @@ public class Yard {
     }
 
 
-
-
-
-
     /*This method converts full coordinates (D3, etc) to numeric coordinates in the grid array ([3][2])*/
-    private int[] getNumericCoordinates(String textCoordinates){
+    private int[] getNumericCoordinates(String textCoordinates) {
 
         char letter = textCoordinates.charAt(0);
         int number = Character.getNumericValue(textCoordinates.charAt(1));
 
 
-        int rowCoordinate = 8-number;
+        int rowCoordinate = 8 - number;
         int columnCoordinate = getLetterIndex(letter);
 
 
@@ -130,17 +123,16 @@ public class Yard {
         return coordinates;
 
 
-
     }
 
     /* This method returns the actual array indexes needed to display the Larva and Birds properly
      * The UI grid contains several margins and extra characters, this method takes all that into account
      */
-    private int[] normalizeCoordinatesForUIGrid(int[] coordinates){
+    private int[] normalizeCoordinatesForUIGrid(int[] coordinates) {
 
         int[] normalizedCoordinates = {
-                coordinates[0]+1,
-                coordinates[1]*2+2
+                coordinates[0] + 1,
+                coordinates[1] * 2 + 2
         };
 
         return normalizedCoordinates;
@@ -148,28 +140,26 @@ public class Yard {
 
 
     /* This method generates a fresh UIGrid with the letters and numbers at the appropiate positions */
-    private void generateUIGrid(){
+    private void generateUIGrid() {
 
 
         int letterIndex = 0;
         int numberIndex = -1;
 
-        for (int i = 0;i<UI_GRID_HEIGHT;i++){
-            for (int j = 0;j<UI_GRID_WIDTH;j++){
+        for (int i = 0; i < UI_GRID_HEIGHT; i++) {
+            for (int j = 0; j < UI_GRID_WIDTH; j++) {
 
                 mUIGrid[i][j] = EMPTY_SPACE;
 
-                if(i == 0 || i == UI_GRID_HEIGHT-1){
-                    if(j !=0 && j%2==0 && j!= UI_GRID_WIDTH-1){
+                if (i == 0 || i == UI_GRID_HEIGHT - 1) {
+                    if (j != 0 && j % 2 == 0 && j != UI_GRID_WIDTH - 1) {
                         mUIGrid[i][j] = mLetters[letterIndex];
                         letterIndex++;
                     }
-                }
-                else{
-                    if(j == 0 || j == UI_GRID_WIDTH-1){
-                        mUIGrid[i][j] = Character.forDigit(8-numberIndex,10);
-                    }
-                    else if(j%2!=0){
+                } else {
+                    if (j == 0 || j == UI_GRID_WIDTH - 1) {
+                        mUIGrid[i][j] = Character.forDigit(8 - numberIndex, 10);
+                    } else if (j % 2 != 0) {
                         mUIGrid[i][j] = '|';
                     }
                 }
@@ -182,14 +172,13 @@ public class Yard {
 
 
     /* Displays the UIGrid on the terminal window */
-    public void printUIGrid(){
-
+    public void printUIGrid() {
 
 
         clearTerminal();
 
-        for(int i = 0 ; i<UI_GRID_HEIGHT; i++){
-            for(int j = 0;j<UI_GRID_WIDTH; j++){
+        for (int i = 0; i < UI_GRID_HEIGHT; i++) {
+            for (int j = 0; j < UI_GRID_WIDTH; j++) {
                 System.out.print(mUIGrid[i][j]);
             }
             System.out.print('\n');
@@ -197,17 +186,14 @@ public class Yard {
     }
 
 
-
-
-
-    /**We will run the command through 3 periods of validations.
-     *
+    /**
+     * We will run the command through 3 periods of validations.
+     * <p>
      * 1 - format
      * 2 - whether it isn't an empty space and if that selected user is allowed to move a specific character
      * 3 - if the selected move is valid for that character
-     *
      */
-    public boolean isMoveValid(Move move){
+    public boolean isMoveValid(Move move) {
 
         String command = move.getCommand();
 
@@ -216,19 +202,23 @@ public class Yard {
         if (!commandCompliesToFormat(command))
             return false;
 
-        else{
+        else {
             /*Second validation*/
             move = parseMove(move);
-            if(!isMoveValidForPlayer(move)) return false;
-            else{
+            if (!isMoveValidForPlayer(move)) return false;
+            else {
                 /*Third validation*/
-                if(!isMoveValidForCharacter(move)){
+                if (!isMoveValidForCharacter(move)) {
                     return false;
-                }
-                else{
+                } else {
+
+                    if (!isPositionEmpty(move.getTo())) {
+                        return false;
+                    } else {
                     /* When every test was passed succesfully */
-                    mTurn = move.isPlayer2Turn();
-                    return true;
+                        mTurn = move.isPlayer2Turn();
+                        return true;
+                    }
                 }
             }
         }
@@ -239,7 +229,7 @@ public class Yard {
     /* This method evaluates if the selected move is valid for the character ( larva or bird )
     i.e - ensures that you don't try to move a bird backwards, etc
      */
-    private boolean isMoveValidForCharacter(Move move){
+    private boolean isMoveValidForCharacter(Move move) {
 
         /*Analyzes the coordinates as the actual  grid [1-8][A-H] .. (not zero index)*/
 
@@ -248,40 +238,38 @@ public class Yard {
 
 
         int fromRow = Character.getNumericValue(from.charAt(1));
-        int fromColumn = getLetterIndex(from.charAt(0))+1;
+        int fromColumn = getLetterIndex(from.charAt(0)) + 1;
 
         int toRow = Character.getNumericValue(to.charAt(1));
-        int toColumn = getLetterIndex(to.charAt(0))+1;
+        int toColumn = getLetterIndex(to.charAt(0)) + 1;
 
 
 
         /* Rules for the larva */
-        if(isLarvaAtPosition(from)){
+        if (isLarvaAtPosition(from)) {
 
             int rowDifference = fromRow - toRow;
             int columnDifference = fromColumn - toColumn;
 
             /* moving one column and one row diagonally in any directions*/
-            if( Math.abs(rowDifference)==1 && Math.abs(columnDifference)==1){
+            if (Math.abs(rowDifference) == 1 && Math.abs(columnDifference) == 1) {
                 return true;
-            }
-            else {
+            } else {
                 return false;
             }
 
         }
 
         /* Rules for the birds */
-        else if (isBirdAtPosition(from)){
+        else if (isBirdAtPosition(from)) {
 
             int rowDifference = fromRow - toRow;
             int columnDifference = fromColumn - toColumn;
 
             /* moving one column and one row diagonally going forward */
-            if( rowDifference == -1 && Math.abs(columnDifference)==1){
+            if (rowDifference == -1 && Math.abs(columnDifference) == 1) {
                 return true;
-            }
-            else{
+            } else {
                 return false;
             }
 
@@ -298,14 +286,13 @@ public class Yard {
     /* This method evaluates if a specific move is valid for the current player's turn
     i.e - player1 can only move the Larva, and not any of the birds
      */
-    private boolean isMoveValidForPlayer(Move move){
+    private boolean isMoveValidForPlayer(Move move) {
 
         String from = move.getFrom();
 
-        if(move.isPlayer1Turn()) {
+        if (move.isPlayer1Turn()) {
             return (isLarvaAtPosition(from));
-        }
-        else{
+        } else {
             return (isBirdAtPosition(from));
         }
 
@@ -314,7 +301,7 @@ public class Yard {
 
 
     /*This method parses a valid command into the two coordinates. From and To*/
-    private Move parseMove(Move move){
+    private Move parseMove(Move move) {
 
         String command = move.getCommand();
         /* Split the string at the space character */
@@ -339,23 +326,21 @@ public class Yard {
     *
     * This also ensures that the move is inside the bounds of the field
     * */
-    private boolean commandCompliesToFormat(String command){
+    private boolean commandCompliesToFormat(String command) {
         return command.matches(COMMAND_PATTERN);
     }
 
     /*This method executes the change in the characters position */
-    public void playMove(Move move){
+    public void playMove(Move move) {
 
         /* Wheather we move the larva or the birds */
-        if (move.isPlayer1Turn()){
+        if (move.isPlayer1Turn()) {
             mLarva = move.getTo();
-        }
-
-        else{
+        } else {
 
             /*Find the actual bird selected to move */
-            for (int i=0;i<mBirds.length;i++){
-                if(mBirds[i].equals(move.getFrom())){
+            for (int i = 0; i < mBirds.length; i++) {
+                if (mBirds[i].equals(move.getFrom())) {
                     mBirds[i] = move.getTo();
                 }
             }
@@ -370,10 +355,10 @@ public class Yard {
       i.e it eats it
        */
 
-    private boolean isWinningMoveForBird(){
+    private boolean isWinningMoveForBird() {
 
 
-        for (int i = 0; i < mBirds.length ; i++){
+        for (int i = 0; i < mBirds.length; i++) {
             if (mBirds[i].equals(mLarva)) return true;
         }
 
@@ -382,13 +367,11 @@ public class Yard {
     }
 
 
-
-
     /*This method checks weather the larva is at the fence ( row 1 ) */
-    private boolean isWinningMoveForLarva(){
+    private boolean isWinningMoveForLarva() {
 
-        for(String s: mBirds){
-            if(s.equals(mLarva)) return false;
+        for (String s : mBirds) {
+            if (s.equals(mLarva)) return false;
         }
 
         int larvaRow = Character.getNumericValue(mLarva.charAt(1));
@@ -401,17 +384,17 @@ public class Yard {
     /* HELPER METHODS */
 
 
-    private void clearTerminal(){
+    private void clearTerminal() {
         System.out.print(String.format("\033[2J"));
     }
 
     /*This method checks if there are any empty spaces at the inputted position*/
-    private boolean isPositionEmpty(String position){
+    private boolean isPositionEmpty(String position) {
 
-        if( position.equals(mLarva)) return false;
-        else{
+        if (position.equals(mLarva)) return false;
+        else {
 
-            for(int i = 0 ; i<mBirds.length; i++){
+            for (int i = 0; i < mBirds.length; i++) {
                 if (position.equals(mBirds[i])) return false;
             }
         }
@@ -424,14 +407,13 @@ public class Yard {
     }
 
 
-
     /*This method checks if there are any birds at the inputted position*/
-    private boolean isBirdAtPosition(String position){
+    private boolean isBirdAtPosition(String position) {
 
         boolean isBird = false;
-        for(int i = 0; i<mBirds.length; i++){
+        for (int i = 0; i < mBirds.length; i++) {
 
-            if( position.equals(mBirds[i])) {
+            if (position.equals(mBirds[i])) {
                 isBird = true;
                 break;
             }
@@ -440,10 +422,10 @@ public class Yard {
     }
 
     /*This method returns the alphabetic index of a character in the allowed list (A-H)*/
-    public int getLetterIndex(char c){
+    public int getLetterIndex(char c) {
 
-        for( int i = 0; i< mLetters.length; i++){
-            if(mLetters[i] == c) return i;
+        for (int i = 0; i < mLetters.length; i++) {
+            if (mLetters[i] == c) return i;
         }
 
 		/* Caused when a invalid letter is introduced */
@@ -455,9 +437,10 @@ public class Yard {
     /**
      * Method called by AI.
      * Delivers a current overview of the grid in a State object
+     *
      * @return Root State representing the current positions
      */
-    public State getCurrentState(){
+    public State getCurrentState() {
 
         State state = new State();
 
