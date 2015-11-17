@@ -57,9 +57,9 @@ public class Yard {
     private Yard() {
 
 
-        System.out.println(getNumericCoordinates("D3"));
-        System.out.println(getNumericCoordinates("A1"));
-        System.out.println(getNumericCoordinates("H8"));
+//        System.out.println(getNumericCoordinates("D3"));
+//        System.out.println(getNumericCoordinates("A1"));
+//        System.out.println(getNumericCoordinates("H8"));
 
         generateInitialPositions();
         generateUIGrid();
@@ -143,7 +143,7 @@ public class Yard {
         coordinates[0] = rowCoordinate;
         coordinates[1] = columnCoordinate;
 
-        System.out.println("----"+coordinates[0]+" "+coordinates[1]);
+//        System.out.println("----"+coordinates[0]+" "+coordinates[1]);
 
         return coordinates;
 

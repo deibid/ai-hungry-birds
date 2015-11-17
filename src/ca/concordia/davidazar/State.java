@@ -110,9 +110,9 @@ public class State {
             Random random = new Random();
             int index = random.nextInt(equalHeuristicStatePool.size() - 1);
             stateToChose = equalHeuristicStatePool.get(index);
-            System.out.println("Hubo repeticiones, y escogi el nodo: "
-                    + index + " De un total de: "
-                    + equalHeuristicStatePool.size() + " repeticiones");
+//            System.out.println("Hubo repeticiones, y escogi el nodo: "
+//                    + index + " De un total de: "
+//                    + equalHeuristicStatePool.size() + " repeticiones");
         }
 
 
@@ -156,7 +156,7 @@ public class State {
             larvaInGrid = larvaInGrid - birdInGrid;
 
         }
-        System.out.println("finalValue: " + larvaInGrid);
+//        System.out.println("finalValue: " + larvaInGrid);
         return larvaInGrid;
     }
 

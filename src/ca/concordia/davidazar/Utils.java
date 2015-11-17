@@ -123,7 +123,7 @@ public class Utils {
 
         int result = row * 8 + (column+1);
 
-        System.out.println("Heuristic value for individual spot: "+result);
+//        System.out.println("Heuristic value for individual spot: "+result);
 
 
         return result;
@@ -149,7 +149,7 @@ public class Utils {
         coordinates[0] = rowCoordinate;
         coordinates[1] = columnCoordinate;
 
-        System.out.println("----"+coordinates[0]+" "+coordinates[1]);
+//        System.out.println("----"+coordinates[0]+" "+coordinates[1]);
 
         return coordinates;
 
