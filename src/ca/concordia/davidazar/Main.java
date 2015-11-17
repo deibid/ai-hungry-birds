@@ -50,7 +50,6 @@ public class Main {
         System.out.println("1- Human VS Human");
         System.out.println("2- Human VS AI");
 
-
         int selection = sc.nextInt();
 
         GameSettings settings = null;

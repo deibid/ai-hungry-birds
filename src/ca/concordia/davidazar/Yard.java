@@ -55,6 +55,12 @@ public class Yard {
     private static Yard instance = new Yard();
 
     private Yard() {
+
+
+        System.out.println(getNumericCoordinates("D3"));
+        System.out.println(getNumericCoordinates("A1"));
+        System.out.println(getNumericCoordinates("H8"));
+
         generateInitialPositions();
         generateUIGrid();
         refreshUI();
@@ -81,19 +87,19 @@ public class Yard {
     }
 
     private void generateInitialPositions() {
-//        mLarva = "D2";
-//        mBirds = new String[4];
-//        mBirds[0] = "A1";
-//        mBirds[1] = "C1";
-//        mBirds[2] = "E1";
-//        mBirds[3] = "G1";
-
-        mLarva = "C3";
+        mLarva = "D2";
         mBirds = new String[4];
-        mBirds[0] = "B4";
-        mBirds[1] = "D4";
-        mBirds[2] = "D2";
-        mBirds[3] = "B2";
+        mBirds[0] = "A1";
+        mBirds[1] = "C1";
+        mBirds[2] = "E1";
+        mBirds[3] = "G1";
+
+//        mLarva = "C3";
+//        mBirds = new String[4];
+//        mBirds[0] = "B4";
+//        mBirds[1] = "D4";
+//        mBirds[2] = "D2";
+//        mBirds[3] = "B2";
 
     }
 
@@ -123,7 +129,7 @@ public class Yard {
 
 
     /*This method converts full coordinates (D3, etc) to numeric coordinates in the grid array ([3][2])*/
-    private int[] getNumericCoordinates(String textCoordinates) {
+    public int[] getNumericCoordinates(String textCoordinates) {
 
         char letter = textCoordinates.charAt(0);
         int number = Character.getNumericValue(textCoordinates.charAt(1));
@@ -136,6 +142,8 @@ public class Yard {
         int[] coordinates = new int[2];
         coordinates[0] = rowCoordinate;
         coordinates[1] = columnCoordinate;
+
+        System.out.println("----"+coordinates[0]+" "+coordinates[1]);
 
         return coordinates;
 
@@ -362,6 +370,8 @@ public class Yard {
                 }
             }
         }
+
+        mTurn = !mTurn;
 
         refreshUI();
 

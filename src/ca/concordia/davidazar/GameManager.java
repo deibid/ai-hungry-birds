@@ -128,6 +128,9 @@ public class GameManager {
 
                 currentMove.setTurn(mTurn);
 
+
+
+
                 /*All the validations occur in this call */
 				isMoveValid = mYard.isMoveValid(currentMove);
 

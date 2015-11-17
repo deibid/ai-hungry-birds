@@ -2,8 +2,6 @@ package ca.concordia.davidazar;
 
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Set;
 
 /**
  * Class that represents the A.I entity
@@ -37,6 +35,8 @@ public class AIPlayer implements Player {
     private static final int BIGGEST_POSITION_POSSIBLE = 88;
     private static final int SMALLEST_POSITION_POSSIBLE = 11;
 
+    private static final int ESCAPED_MINIMAX = 0x99999999;
+
 
     public String getPlayerName() {
         return mPlayerName;
@@ -55,18 +55,18 @@ public class AIPlayer implements Player {
     @Override
     public Move makeMove() {
 
-
-//		todo: Create an unbeatable AI
-
         System.out.println("ESTOY EN AI MAKEMOVE");
 
-        generateStateSpace();
-        evaluateMinimax();
-        generateMove();
+        State root = generateStateSpace();
+        int rootMinMaxValue = evaluateMinimax2(root, 1);
 
+        System.out.println("Heuristic Value for root node: "+rootMinMaxValue);
 
-        //todo agregar creacion de move.
-        return null;
+        root.setGivenHeuristicValue(rootMinMaxValue);
+
+        Move move = generateMove(root);
+
+        return move;
 
     }
 
@@ -76,30 +76,112 @@ public class AIPlayer implements Player {
      * @return the root node
      */
     private State generateStateSpace() {
-
-
         State root = mYard.getCurrentState();
+
+        System.out.println("Root isLarvaNode: "+root.isIsLarvaNode());
 
 
         root = generateChildren(root, 1);
-
-
         System.out.println("termine state space");
-
-
         return root;
+    }
+
+    private static int evaluateMinimax2(State state, int level) {
+
+        System.out.println("\n\nEvaluateMinimax2");
+
+        int result = 0;
+
+        if (level == MAX_LEVELS) {
+            System.out.println("Soy Leaf.. State: " + state);
+
+            int leafHeuristic = evaluateHeuristic(state);
+            System.out.println("Leaf Heuristic = " + leafHeuristic);
+            return leafHeuristic;
+
+        } else {
+            System.out.println("No soy Leaf.. State: " + state);
+
+            int heuristicValueFromChilds = 0;
+
+            for (int i = 0; i < state.getChildCount(); i++) {
+                result = evaluateMinimax2(state.getChildState(i), level + 1);
+
+                if (i == 0) heuristicValueFromChilds = result;
+                else {
+                     /* if MAX */
+                    if (state.isIsLarvaNode()) {
+                        if (result >= heuristicValueFromChilds) heuristicValueFromChilds = result;
+                    }
+                     /* if MIN */
+                    else {
+                        if (result <= heuristicValueFromChilds) heuristicValueFromChilds = result;
+                    }
+
+                }
+
+            }
+        }
+
+        state.setGivenHeuristicValue(result);
+
+        System.out.println("result Heuristic From children = " + result);
+        return result;
 
 
     }
 
-    private void evaluateMinimax() {
+    private Move generateMove(State root) {
+
+        boolean isMax = root.isIsLarvaNode();
+
+        System.out.println("en generateMove, isMax: "+isMax);
+
+        State stateToPlay = root.getMinMaxChild(isMax);
+
+
+
+
+
+
+
+
+
+        return null;
+
+
 
     }
 
+    private Move convertStateIntoMove(State nextState){
 
-    private void generateMove() {
+        Move move = new Move();
 
 
+        String command = "";
+
+
+        State currentState = mYard.getCurrentState();
+
+
+
+        move.setCommand(command);
+        move.setMovingPlayer(this);
+
+
+
+        return null;
+    }
+
+
+
+
+    private static int evaluateHeuristic(State state) {
+        int heuristicValue = state.getEvaluatedHeuristicValue();
+        System.out.println("AIPlayer.. State: " + state);
+        System.out.println("AIPlayer.. Evaluate heuristic -- " + heuristicValue);
+
+        return heuristicValue;
     }
 
 
@@ -134,7 +216,7 @@ public class AIPlayer implements Player {
             generateChildren(state.getChildState(j), level + 1);
         }
 
-        return null;
+        return state;
     }
 
 
@@ -272,12 +354,14 @@ public class AIPlayer implements Player {
         }
 
 
-        State[] childStates = new State[validCoordinates.length];
+        System.out.println("Antes de trimear");
+        validCoordinates = trimBidimensionalArray(validCoordinates);
 
+        State[] childStates = new State[validCoordinates.length];
         for (int k = 0; k < childStates.length; k++) {
 
             /** This line avoids the insertion of a repetetive state */
-            if(validCoordinates[k][0]!= 0 && validCoordinates[k][1]!= 0) {
+            if (validCoordinates[k][0] != 0 && validCoordinates[k][1] != 0) {
                 State newState = new State();
                 newState.setLarva(state.getLarva());
                 String[] newBirds = getChangedBirdPositions(k, state, validCoordinates);
@@ -290,36 +374,6 @@ public class AIPlayer implements Player {
         return childStates;
 
     }
-
-
-    private static String[] getChangedBirdPositions(int moveIndex, State state, HashMap<Integer, Integer> coordinates) {
-
-
-        int[] numericBirdCoordinates = getNumericCoordinate(state.getBirds());
-
-
-        Integer[] oldPositions = coordinates.keySet().toArray(new Integer[coordinates.size()]);
-
-
-//        Integer[] oldPositions = (Integer[]) coordinates.entrySet().toArray();
-
-        Integer oldPosition = oldPositions[moveIndex];
-
-        for (int i = 0; i < numericBirdCoordinates.length; i++) {
-
-            if (oldPosition == numericBirdCoordinates[i]) {
-                numericBirdCoordinates[i] = coordinates.get(oldPosition);
-
-                System.out.println("Movi : " + oldPosition + " hacia: " + coordinates.get(oldPosition));
-            }
-
-        }
-
-
-        return getStringCoordinates(numericBirdCoordinates);
-
-    }
-
 
     private static String[] getChangedBirdPositions(int moveIndex, State state, int[][] coordinates) {
 
@@ -341,20 +395,62 @@ public class AIPlayer implements Player {
         }
 
 
-
-
         return getStringCoordinates(numericBirdCoordinates);
 
     }
 
+
+    /**
+     * This method takes a 2 dimension int array and eliminates any empty position it may have
+     *
+     * @param array to trim
+     * @return trimed array of smaller or equal dimension as original array
+     */
+    private static int[][] trimBidimensionalArray(int[][] array) {
+
+
+        int arrayLength = 0;
+
+        for (int i = 0; i < array.length; i++) {
+            if (array[i][0] != 0 && array[i][1] != 0)
+                arrayLength++;
+
+        }
+
+        int[][] trimedArray = new int[arrayLength][2];
+
+        for (int i = 0; i < array.length; i++) {
+            if (array[i][0] != 0 && array[i][1] != 0) {
+                trimedArray[i][0] = array[i][0];
+                trimedArray[i][1] = array[i][1];
+            }
+        }
+
+
+        for (int i = 0; i < array.length; i++) {
+
+            System.out.println("original[" + i + "][0]: " + array[i][0]);
+            System.out.println("original[" + i + "][1]: " + array[i][1]);
+
+            if (i < trimedArray.length) {
+                System.out.println("trimed[" + i + "][0]: " + trimedArray[i][0]);
+                System.out.println("trimed[" + i + "][1]: " + trimedArray[i][1]);
+            }
+
+        }
+
+        return trimedArray;
+
+    }
+
+
     private static boolean isCoordinateValid(int coordinate) {
 //        System.out.println("isCoordinateValid: "+coordinate);
-        boolean result = (coordinate <= BIGGEST_POSITION_POSSIBLE && coordinate >= SMALLEST_POSITION_POSSIBLE && coordinate%10 !=0);
+        boolean result = (coordinate <= BIGGEST_POSITION_POSSIBLE && coordinate >= SMALLEST_POSITION_POSSIBLE && coordinate % 10 != 0);
 
 //        System.out.println("isCoordinateValid: result  "+result);
         return result;
     }
-
 
     private static boolean isSpaceAvailable(State state, int coordinate) {
 
@@ -381,7 +477,6 @@ public class AIPlayer implements Player {
 
     }
 
-
     private static String getStringCoordinates(int coordinate) {
 
 
@@ -394,7 +489,7 @@ public class AIPlayer implements Player {
 //        System.out.println("getStringCoordinates   number " + number);
 
         /** this converts a 19 to a 9 for example */
-        int letterNumber = (coordinate - number * 10)-1;
+        int letterNumber = (coordinate - number * 10) - 1;
 //        System.out.println("getStringCoordinates   letterNumber " + letterNumber);
 
         char letter = letters.charAt(letterNumber);
@@ -406,7 +501,6 @@ public class AIPlayer implements Player {
         return result;
 
     }
-
 
     private static String[] getStringCoordinates(int[] coordinates) {
 
@@ -426,7 +520,7 @@ public class AIPlayer implements Player {
 //            System.out.println("getStringCoordinates   number " + number);
 
             /** this converts a 19 to a 9 for example */
-            int letterNumber = (coordinate - number * 10)-1;
+            int letterNumber = (coordinate - number * 10) - 1;
 //            System.out.println("getStringCoordinates   letterNumber " + letterNumber);
 
             char letter = letters.charAt(letterNumber);
@@ -443,7 +537,6 @@ public class AIPlayer implements Player {
         return resultSet;
 
     }
-
 
     private static int getNumericCoordinate(String position) {
 
@@ -487,6 +580,5 @@ public class AIPlayer implements Player {
 
 
     }
-
 
 }

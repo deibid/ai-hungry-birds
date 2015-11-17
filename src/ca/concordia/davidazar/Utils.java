@@ -116,7 +116,45 @@ public class Utils {
     }
 
 
+    public static int getCoordinatesGridWise(int[] coordinates){
 
+        int row = coordinates[0];
+        int column = coordinates[1];
+
+        int result = row * 8 + (column+1);
+
+        System.out.println("Heuristic value for individual spot: "+result);
+
+
+        return result;
+
+    }
+
+
+    /*This method converts full coordinates (D3, etc) to numeric coordinates in the grid array ([3][2])*/
+    public static int[] getNumericCoordinates(String textCoordinates) {
+
+
+        String letters = "ABCDEFGH";
+
+        char letter = textCoordinates.charAt(0);
+        int number = Character.getNumericValue(textCoordinates.charAt(1));
+
+
+        int rowCoordinate = 8 - number;
+        int columnCoordinate = letters.indexOf(letter);
+
+
+        int[] coordinates = new int[2];
+        coordinates[0] = rowCoordinate;
+        coordinates[1] = columnCoordinate;
+
+        System.out.println("----"+coordinates[0]+" "+coordinates[1]);
+
+        return coordinates;
+
+
+    }
 
 
 }
